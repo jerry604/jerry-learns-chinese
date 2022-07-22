@@ -23,7 +23,7 @@ const character = document.getElementById("character");
 const input = document.getElementById("input");
 const form = document.getElementById("form");
 
-const fetchRandomIndex = () => Math.floor(Math.random() * (WORDS.length - 1));
+const fetchRandomIndex = () => Math.floor(Math.random() * (WORDS.length));
 const submitAnswer = (e) => {
   e.preventDefault();
 
