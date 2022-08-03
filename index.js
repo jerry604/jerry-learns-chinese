@@ -14,7 +14,21 @@ const DICTIONARY = {
   yang4: '樣',
   hen3: '很',
   qu3: '取',
-  na2: '拿',
+  na2: '拿',  
+  zhou1: '週',
+  pei2: '陪',
+  peng2: '朋',
+  guang4: '逛',
+  jie1: '街',
+  ta: '她',
+  zhu1: '珠',
+  bao3: '寶',
+  chu1: '出',
+  qu4: '去',
+  sai4: '賽',
+  chang3: '場',
+  li3: '禮',
+  bai4: '拜',
 };
 
 let WORDS = Object.values(DICTIONARY);
