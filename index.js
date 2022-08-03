@@ -17,7 +17,7 @@ const DICTIONARY = {
   na2: '拿',
 };
 
-const WORDS = Object.values(DICTIONARY);
+let WORDS = Object.values(DICTIONARY);
 
 const character = document.getElementById('character');
 const input = document.getElementById('input');
@@ -28,9 +28,12 @@ const submitAnswer = (e) => {
   e.preventDefault();
 
   if (DICTIONARY[e.currentTarget[0].value] === character.innerText) {
-    character.innerText = WORDS[fetchRandomIndex()];
-    e.currentTarget[0].value = '';
+    delete DICTIONARY[e.currentTarget[0].value];
+    WORDS = Object.values(DICTIONARY);
+    character.innerText = WORDS.length > 0 ? WORDS[fetchRandomIndex()] : 'Finished!';
   }
+
+  e.currentTarget[0].value = '';
 };
 
 form.addEventListener('submit', submitAnswer);
