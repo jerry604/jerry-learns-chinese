@@ -90,25 +90,27 @@ const fetchRandomIndex = (dictionary) => Math.floor(Math.random() * (dictionary.
 
 const submitAnswer = (e) => {
   e.preventDefault();
-
-  if (DICTIONARY[e.currentTarget[0].value] && 
-      DICTIONARY[e.currentTarget[0].value].indexOf(character.innerText) > -1) {
-    character.style.setProperty('color', 'black', '');
-    delete DICTIONARY[e.currentTarget[0].value];
-    WORDS = Object.values(DICTIONARY);
-
-    if (WORDS.length > 0) {
-      const pinyinIndex = fetchRandomIndex(WORDS);
-      const characterIndex = fetchRandomIndex(WORDS[pinyinIndex]);
-      character.innerText = WORDS[pinyinIndex][characterIndex];
-    } else {
-      character.innerText = 'Finished!';  
-    }
-  } else {
-    character.style.setProperty('color', 'red', '');
-  }
+  const isCorrect = DICTIONARY[e.currentTarget[0].value] && 
+                    DICTIONARY[e.currentTarget[0].value].indexOf(character.innerText) > -1;
 
   e.currentTarget[0].value = '';
+
+  if (!isCorrect) {
+    character.style.setProperty('color', 'red');
+    return;
+  }
+
+  character.style.setProperty('color', 'black');
+  delete DICTIONARY[e.currentTarget[0].value];
+  WORDS = Object.values(DICTIONARY);
+
+  if (WORDS.length > 0) {
+    const pinyinIndex = fetchRandomIndex(WORDS);
+    const characterIndex = fetchRandomIndex(WORDS[pinyinIndex]);
+    character.innerText = WORDS[pinyinIndex][characterIndex];
+  } else {
+    character.innerText = 'Finished!';  
+  }
 };
 
 form.addEventListener('submit', submitAnswer);
