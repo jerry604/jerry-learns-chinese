@@ -91,7 +91,9 @@ const fetchRandomIndex = (dictionary) => Math.floor(Math.random() * (dictionary.
 const submitAnswer = (e) => {
   e.preventDefault();
 
-  if (DICTIONARY[e.currentTarget[0].value].indexOf(character.innerText) > -1) {
+  if (DICTIONARY[e.currentTarget[0].value] && 
+      DICTIONARY[e.currentTarget[0].value].indexOf(character.innerText) > -1) {
+    character.style.setProperty('color', 'black', '');
     delete DICTIONARY[e.currentTarget[0].value];
     WORDS = Object.values(DICTIONARY);
 
@@ -102,6 +104,8 @@ const submitAnswer = (e) => {
     } else {
       character.innerText = 'Finished!';  
     }
+  } else {
+    character.style.setProperty('color', 'red', '');
   }
 
   e.currentTarget[0].value = '';
